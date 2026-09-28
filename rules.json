@@ -1,0 +1,5 @@
+[
+    {"ip": "192.168.1.100", "action": "block"},
+    {"port": 80, "action": "block"},
+    {"protocol": "TCP", "action": "allow"}
+]

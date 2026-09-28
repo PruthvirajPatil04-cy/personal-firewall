@@ -1,56 +1,115 @@
-# Personal Firewall (Cross-Platform)
+# 🔥 Personal Firewall
 
-A lightweight Python-based personal firewall that filters network traffic based on user-defined rules. This project includes real-time packet sniffing, logging of suspicious packets, and a simple graphical user interface (GUI) for live traffic monitoring. It is designed to run on both Windows and Linux platforms.
+A Python-based personal firewall designed to monitor, analyze, and filter network traffic using configurable security rules. The project demonstrates fundamental concepts of **network security, packet filtering, traffic monitoring, and security logging**.
 
-## Features
+> **Educational Project:** This project is intended for learning and cybersecurity experimentation in authorized environments.
 
-- Cross-platform support (Windows and Linux)
-- Live packet sniffing using Scapy
-- Rule engine for filtering traffic by IP, port, and protocol
-- Logging of suspicious packets for auditing
-- Simple GUI for real-time monitoring using Tkinter
-- Optional integration with `iptables` on Linux for system-level control
+---
 
-## Project Structure
-personal_firewall/
-├── main.py # GUI application entry point
-├── packet_sniffer.py # Packet capture and filtering
-├── rule_engine.py # Firewall rule evaluation
-├── logs/
-│ └── suspicious.log # Log file for flagged packets
-└── README.md # Project documentation
+## 📌 Overview
 
+A firewall acts as a security barrier between a trusted system/network and potentially untrusted network traffic.
 
-## Requirements
+This project provides a personal firewall application capable of monitoring network traffic and applying predefined rules to determine whether traffic should be **allowed or blocked**.
 
-- Python 3.8 or above
-- Scapy
-- Tkinter (usually included with Python)
-- Administrator/root privileges for packet sniffing
+The project can be extended with additional filtering rules, logging capabilities, packet analysis, and a graphical interface.
 
-## Installation
-1. Clone the repository:
-2. Install dependencies:
-3. (Optional) If using Linux and want to apply rules at the system level:
-   
-## Usage
+---
 
-Run the firewall GUI using:
-This will open the GUI window and begin sniffing packets on the default interface. You can modify `packet_sniffer.py` to change interfaces or rule behavior.
+## 🎯 Objectives
 
-## Rule Configuration
+* Monitor incoming and outgoing network traffic.
+* Analyze basic packet information.
+* Filter traffic according to predefined rules.
+* Allow or block network connections.
+* Maintain logs of firewall activity.
+* Understand practical network security concepts.
+* Learn how firewall rules interact with network traffic.
 
-You can define firewall rules in `rule_engine.py`. Rules can allow or block packets based on:
+---
 
-- Source/Destination IP
-- Source/Destination Port
-- Protocol (TCP, UDP, ICMP)
+## 🛠️ Technologies Used
 
-## Logging
+| Technology          | Purpose                      |
+| ------------------- | ---------------------------- |
+| Python              | Core application             |
+| Scapy               | Packet capture and analysis  |
+| iptables / nftables | Linux traffic filtering      |
+| JSON                | Firewall rule configuration  |
+| Logging             | Security event recording     |
+| Tkinter             | Optional graphical interface |
 
-All packets that are flagged as suspicious or blocked are logged in `logs/suspicious.log` for audit purposes.
+---
 
-## Notes
+## ⚙️ Key Features
 
-- Running as administrator or root may be required to sniff packets depending on the OS.
-- On Linux, integration with `iptables` allows actual blocking at the system level. On Windows, blocking is simulated at the application level.
+### 1. Traffic Monitoring
+
+The firewall can monitor network traffic and extract information such as:
+
+* Source IP address
+* Destination IP address
+* Source port
+* Destination port
+* Network protocol
+* Packet information
+
+### 2. Rule-Based Filtering
+
+Traffic can be controlled using configurable rules.
+
+Example:
+
+```text
+ALLOW TCP 443
+BLOCK TCP 23
+BLOCK 192.168.1.50
+ALLOW UDP 53
+```
+
+### 3. Packet Filtering
+
+The firewall analyzes traffic and determines whether it matches an existing security rule.
+
+```text
+Network Traffic
+       ↓
+Packet Capture
+       ↓
+Packet Analysis
+       ↓
+Rule Matching
+    ↙       ↘
+MATCH      NO MATCH
+  ↓            ↓
+BLOCK/ALLOW   DEFAULT RULE
+       ↓
+     Logging
+```
+
+### 4. Security Logging
+
+Firewall events can be recorded for later analysis.
+
+Example:
+
+```text
+[BLOCKED] 192.168.1.50 → TCP → Port 23
+[ALLOWED] 8.8.8.8 → UDP → Port 53
+[ALLOWED] Web Server → TCP → Port 443
+```
+
+---
+
+## 📁 Project Structure
+
+```text
+personal-firewall/
+│
+├── firewall/
+│   ├── __init__.py
+│   ├── monitor.py
+│   ├── rules.py
+│   ├── filt
+```
+
